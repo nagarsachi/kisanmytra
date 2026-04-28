@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kisan Mitra - Smart Crop Advisory System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-seedling"></i>
+                <h1>Kisan Mitra</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#crops" class="nav-link">Crops</a></li>
+                    <li><a href="#weather" class="nav-link">Weather</a></li>
+                    <li><a href="#soil" class="nav-link">Soil</a></li>
+                    <li><a href="#calendar" class="nav-link">Calendar</a></li>
+                    <li><a href="#pests" class="nav-link">Pests</a></li>
+                    <li><a href="#market" class="nav-link">Market</a></li>
+                    <li><a href="#tools" class="nav-link">Tools</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Smart Crop Advisory for Small Farmers</h2>
+                    <p>Get personalized crop recommendations, weather updates, soil health tips, and market insights - all in one place</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="showCropRecommendation()">Get Crop Advice</button>
+                        <button class="btn btn-secondary" onclick="showWeatherForecast()">Check Weather</button>
+                        <button class="btn btn-accent" onclick="showFarmingTools()">Farming Tools</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <i class="fas fa-tractor"></i>
+                </div>
+            </div>
+        </section>
+
+        <section id="quick-stats" class="quick-stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-temperature-high"></i>
+                        <h3>Temperature</h3>
+                        <p id="current-temp">28°C</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-tint"></i>
+                        <h3>Humidity</h3>
+                        <p id="current-humidity">65%</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-cloud-rain"></i>
+                        <h3>Rainfall</h3>
+                        <p id="current-rain">2.5mm</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-sun"></i>
+                        <h3>Season</h3>
+                        <p id="current-season">Kharif</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="crops" class="section">
+            <div class="container">
+                <h2>Recommended Crops</h2>
+                <div class="crop-selector">
+                    <select id="season-select">
+                        <option value="kharif">Kharif Season</option>
+                        <option value="rabi">Rabi Season</option>
+                        <option value="zaid">Zaid Season</option>
+                    </select>
+                    <select id="region-select">
+                        <option value="north">North India</option>
+                        <option value="south">South India</option>
+                        <option value="east">East India</option>
+                        <option value="west">West India</option>
+                        <option value="central">Central India</option>
+                    </select>
+                    <button class="btn btn-primary" onclick="updateCropRecommendations()">Update</button>
+                </div>
+                <div class="crop-grid" id="crop-grid">
+                    <!-- Crops will be dynamically added here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="weather" class="section">
+            <div class="container">
+                <h2>Weather Forecast</h2>
+                <div class="weather-container">
+                    <div class="current-weather">
+                        <div class="weather-icon">
+                            <i class="fas fa-cloud-sun"></i>
+                        </div>
+                        <div class="weather-info">
+                            <h3>Today</h3>
+                            <p class="temperature">28°C</p>
+                            <p class="description">Partly Cloudy</p>
+                        </div>
+                    </div>
+                    <div class="weather-forecast" id="weather-forecast">
+                        <!-- 5-day forecast will be added here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="soil" class="section">
+            <div class="container">
+                <h2>Soil Health Calculator</h2>
+                <div class="soil-calculator">
+                    <div class="soil-form">
+                        <div class="form-group">
+                            <label for="soil-ph">Soil pH</label>
+                            <input type="number" id="soil-ph" min="0" max="14" step="0.1" placeholder="6.5">
+                        </div>
+                        <div class="form-group">
+                            <label for="soil-nitrogen">Nitrogen (kg/ha)</label>
+                            <input type="number" id="soil-nitrogen" placeholder="40">
+                        </div>
+                        <div class="form-group">
+                            <label for="soil-phosphorus">Phosphorus (kg/ha)</label>
+                            <input type="number" id="soil-phosphorus" placeholder="20">
+                        </div>
+                        <div class="form-group">
+                            <label for="soil-potassium">Potassium (kg/ha)</label>
+                            <input type="number" id="soil-potassium" placeholder="30">
+                        </div>
+                        <button class="btn btn-primary" onclick="analyzeSoilHealth()">Analyze Soil</button>
+                    </div>
+                    <div class="soil-results" id="soil-results">
+                        <!-- Results will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="calendar" class="section">
+            <div class="container">
+                <h2>Crop Calendar</h2>
+                <div class="calendar-container">
+                    <div class="calendar-tabs">
+                        <button class="tab-btn active" onclick="showCalendarMonth('january')">January</button>
+                        <button class="tab-btn" onclick="showCalendarMonth('february')">February</button>
+                        <button class="tab-btn" onclick="showCalendarMonth('march')">March</button>
+                        <button class="tab-btn" onclick="showCalendarMonth('april')">April</button>
+                        <button class="tab-btn" onclick="showCalendarMonth('may')">May</button>
+                        <button class="tab-btn" onclick="showCalendarMonth('june')">June</button>
+                    </div>
+                    <div class="calendar-content" id="calendar-content">
+                        <!-- Calendar content will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pests" class="section">
+            <div class="container">
+                <h2>Pest & Disease Advisory</h2>
+                <div class="pest-grid" id="pest-grid">
+                    <!-- Pest information will be displayed here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="market" class="section">
+            <div class="container">
+                <h2>Market Prices</h2>
+                <div class="market-container">
+                    <div class="market-filters">
+                        <select id="crop-filter">
+                            <option value="all">All Crops</option>
+                            <option value="wheat">Wheat</option>
+                            <option value="rice">Rice</option>
+                            <option value="cotton">Cotton</option>
+                            <option value="pulses">Pulses</option>
+                        </select>
+                        <select id="market-filter">
+                            <option value="all">All Markets</option>
+                            <option value="delhi">Delhi</option>
+                            <option value="mumbai">Mumbai</option>
+                            <option value="kolkata">Kolkata</option>
+                            <option value="chennai">Chennai</option>
+                        </select>
+                    </div>
+                    <div class="market-table" id="market-table">
+                        <!-- Market prices will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Features Section -->
+        <section id="tools" class="section">
+            <div class="container">
+                <h2>Farming Tools & Calculators</h2>
+                
+                <!-- Profitability Calculator -->
+                <div class="tool-card">
+                    <h3><i class="fas fa-calculator"></i> Crop Profitability Calculator</h3>
+                    <div class="tool-content">
+                        <div class="input-group">
+                            <select id="profit-crop-select">
+                                <option value="Rice">Rice</option>
+                                <option value="Wheat">Wheat</option>
+                                <option value="Cotton">Cotton</option>
+                                <option value="Maize">Maize</option>
+                                <option value="Sugarcane">Sugarcane</option>
+                                <option value="Groundnut">Groundnut</option>
+                                <option value="Soybean">Soybean</option>
+                                <option value="Chickpea">Chickpea</option>
+                                <option value="Mustard">Mustard</option>
+                                <option value="Tomato">Tomato</option>
+                                <option value="Chili">Chili</option>
+                            </select>
+                            <input type="number" id="land-size" placeholder="Land Size (hectares)" step="0.1" min="0.1">
+                            <input type="number" id="yield-input" placeholder="Expected Yield (tons/ha)" step="0.1" min="0.1">
+                            <input type="number" id="price-input" placeholder="Market Price (₹/kg)" step="1" min="1">
+                            <input type="number" id="cost-input" placeholder="Total Cost (₹)" step="1000" min="0">
+                        </div>
+                        <button class="btn btn-primary" onclick="calculateProfitability()">Calculate Profit</button>
+                        <div id="profitability-result" class="result-container"></div>
+                    </div>
+                </div>
+
+                <!-- Crop Comparison -->
+                <div class="tool-card">
+                    <h3><i class="fas fa-balance-scale"></i> Crop Comparison</h3>
+                    <div class="tool-content">
+                        <div class="input-group">
+                            <select id="compare-crop1">
+                                <option value="Rice">Rice</option>
+                                <option value="Wheat">Wheat</option>
+                                <option value="Cotton">Cotton</option>
+                                <option value="Maize">Maize</option>
+                                <option value="Sugarcane">Sugarcane</option>
+                                <option value="Groundnut">Groundnut</option>
+                                <option value="Soybean">Soybean</option>
+                                <option value="Chickpea">Chickpea</option>
+                                <option value="Mustard">Mustard</option>
+                                <option value="Tomato">Tomato</option>
+                                <option value="Chili">Chili</option>
+                            </select>
+                            <span>VS</span>
+                            <select id="compare-crop2">
+                                <option value="Wheat">Wheat</option>
+                                <option value="Rice">Rice</option>
+                                <option value="Cotton">Cotton</option>
+                                <option value="Maize">Maize</option>
+                                <option value="Sugarcane">Sugarcane</option>
+                                <option value="Groundnut">Groundnut</option>
+                                <option value="Soybean">Soybean</option>
+                                <option value="Chickpea">Chickpea</option>
+                                <option value="Mustard">Mustard</option>
+                                <option value="Tomato">Tomato</option>
+                                <option value="Chili">Chili</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" onclick="compareCrops()">Compare Crops</button>
+                        <div id="crop-comparison-result" class="result-container"></div>
+                    </div>
+                </div>
+
+                <!-- Fertilizer Calculator -->
+                <div class="tool-card">
+                    <h3><i class="fas fa-flask"></i> Fertilizer Calculator</h3>
+                    <div class="tool-content">
+                        <div class="input-group">
+                            <select id="fert-crop-select">
+                                <option value="Rice">Rice</option>
+                                <option value="Wheat">Wheat</option>
+                                <option value="Cotton">Cotton</option>
+                                <option value="Maize">Maize</option>
+                                <option value="Sugarcane">Sugarcane</option>
+                                <option value="Groundnut">Groundnut</option>
+                                <option value="Soybean">Soybean</option>
+                                <option value="Chickpea">Chickpea</option>
+                                <option value="Mustard">Mustard</option>
+                                <option value="Tomato">Tomato</option>
+                                <option value="Chili">Chili</option>
+                            </select>
+                            <input type="number" id="fert-area" placeholder="Area (hectares)" step="0.1" min="0.1">
+                            <input type="number" id="soil-nitrogen" placeholder="Soil Nitrogen (kg/ha)" step="1" min="0">
+                            <input type="number" id="soil-phosphorus" placeholder="Soil Phosphorus (kg/ha)" step="1" min="0">
+                            <input type="number" id="soil-potassium" placeholder="Soil Potassium (kg/ha)" step="1" min="0">
+                        </div>
+                        <button class="btn btn-primary" onclick="calculateFertilizer()">Calculate Fertilizer</button>
+                        <div id="fertilizer-result" class="result-container"></div>
+                    </div>
+                </div>
+
+                <!-- Irrigation Scheduler -->
+                <div class="tool-card">
+                    <h3><i class="fas fa-tint"></i> Irrigation Scheduler</h3>
+                    <div class="tool-content">
+                        <div class="input-group">
+                            <select id="irrigation-crop-select">
+                                <option value="Rice">Rice</option>
+                                <option value="Wheat">Wheat</option>
+                                <option value="Cotton">Cotton</option>
+                                <option value="Maize">Maize</option>
+                                <option value="Sugarcane">Sugarcane</option>
+                                <option value="Groundnut">Groundnut</option>
+                                <option value="Soybean">Soybean</option>
+                                <option value="Chickpea">Chickpea</option>
+                                <option value="Mustard">Mustard</option>
+                                <option value="Tomato">Tomato</option>
+                                <option value="Chili">Chili</option>
+                            </select>
+                            <select id="irrigation-season">
+                                <option value="kharif">Kharif</option>
+                                <option value="rabi">Rabi</option>
+                                <option value="zaid">Zaid</option>
+                            </select>
+                            <select id="soil-type">
+                                <option value="Clay">Clay Soil</option>
+                                <option value="Loam">Loam Soil</option>
+                                <option value="Sandy">Sandy Soil</option>
+                                <option value="Sandy Loam">Sandy Loam</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" onclick="generateIrrigationSchedule()">Generate Schedule</button>
+                        <div id="irrigation-schedule-result" class="result-container"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Kisan Mitra</h3>
+                    <p>Empowering small farmers with smart agricultural advisory</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#crops">Crops</a></li>
+                        <li><a href="#weather">Weather</a></li>
+                        <li><a href="#soil">Soil</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@kisanmitra.in</p>
+                    <p>Helpline: 1800-123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Kisan Mitra. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
